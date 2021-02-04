@@ -15,7 +15,7 @@ def solution2(s):
     number = list(map(int, s.split(' ')))
     answer = ''
     answer = str(min(number))+' '+str(max(number))
-    print(answer)``
+    print(answer)
     return answer
 
 
