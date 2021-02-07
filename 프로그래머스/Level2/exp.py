@@ -1,5 +1,3 @@
-clothes = [['yellow_hat', 'headgear'], [
-    'blue_sunglasses', 'eyewear'], ['green_turban', 'headgear']]
-dic = {}
-dic['hello'] = 'h'
-print(dic)
+n = 3
+for i in range(2, n+1):
+    print(i)
