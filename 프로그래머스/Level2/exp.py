@@ -1,3 +1,2 @@
-s = '123'
-print(s[1:])
-
+people = []
+print(len(people) == 0)
