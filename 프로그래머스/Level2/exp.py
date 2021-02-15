@@ -1,2 +1,2 @@
-people = []
-print(len(people) == 0)
+if(1 == 1):
+    print('참')
