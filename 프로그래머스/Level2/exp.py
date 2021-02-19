@@ -1,6 +1,5 @@
-s = " 3people  unFollowed me"
-s = s.lower()
-for i, n in enumerate(s):
-    if(i == 3):
-        n = n.upper()
-print(s)
+A = [1, 4, 2]
+B = [5, 4, 4]
+
+for a, b in zip(A, B):
+    print(a, b)
