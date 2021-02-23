@@ -1,28 +1,29 @@
-arr = [12, 12, 10]
+arr = [12, 12]
 
 
 def solution(arr):
     arr = list(set(arr))
-    maxn = max(arr)
     temp = []
-
-    for i in range(1, maxn+1):
+    while(True):
+        maxn = max(arr)
         flag = False
-        for j in range(len(arr)):
-            if(arr[j] % i == 0):
-                arr[j] /= i
-                flag = True
-        if(flag):
-            temp.append(i)
+        for i in range(2, int(maxn)+1):
+            flag = False
+            for j in range(len(arr)):
+                if(arr[j] % i == 0):
+                    arr[j] = arr[j]/i
+                    flag = True
+            if(flag):
+                temp.append(i)
+                break
+        if not flag:
+            break
 
-    print(f"arr:{arr}")
     answer = 1
-    temp.extend(arr[0:])
-    print(f"temp:{temp}")
-    for i in temp:
-        answer *= i
-    print(int(answer))
-    return int(answer)
+    for t in temp:
+        answer *= t
+    print(answer)
+    return answer
 
 
 solution(arr)
