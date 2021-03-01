@@ -21,7 +21,6 @@ def solution(progresses, speeds):
             dday = days[i]
         if(i == len(days)-1):
             answer.append(count)
-
     print(answer)
     return answer
 
