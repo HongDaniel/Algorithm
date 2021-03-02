@@ -1,8 +1,12 @@
-numbers = "17"
+from itertools import permutations
+
+numbers = "011"
 
 
 def isprime(n):
-    if(n == 1):
+    if(n == 0):
+        return False
+    elif(n == 1):
         return False
     else:
         for i in range(2, n):
@@ -14,9 +18,17 @@ def isprime(n):
 
 def solution(numbers):
     answer = 0
-    for i in range(0, len(numbers)):
-        for j in range(0, len(numbers)):
-            for k in range(0, len(numbers), j):
+    temp = []
+
+    for l in range(1, len(numbers)+1):
+        pm = list(permutations(numbers, l))
+        for el in pm:
+            temp.append(int("".join(el)))
+
+    temp = list(set(temp))
+    for i in range(len(temp)):
+        if(isprime(temp[i])):
+            answer += 1
 
     return answer
 
