@@ -17,8 +17,7 @@ def solution1(numbers):
             if(int(temp[i]) % 10 == 0):
                 if(int(temp[i]) // 10 == int(temp[j]) or
                    int(temp[i]) // 100 == int(temp[j]) or
-                   int(temp[i]) // 1000 == int(temp[j])
-                   ):
+                   int(temp[i]) // 1000 == int(temp[j])):
                     print(temp[i], temp[j])
                     c = j
             temp[i], temp[c] = temp[c], temp[i]
