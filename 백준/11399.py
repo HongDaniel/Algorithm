@@ -8,5 +8,4 @@ for i in a:
     if n == 0:
         break
 print(result)
-
 #핵심 : n = list(map(int,input().split()))
