@@ -36,14 +36,17 @@ def solution(skill, skill_trees):
 def solution2(skill, skill_trees):
     answer = 0
     temp = []
+
     for n in range(len(skill_trees)):
         temp = []
         flag = True
+
         for i in range(len(skill_trees[n])):
             if skill_trees[n][i] in skill:
                 temp.append(skill_trees[n][i])
         print(temp)
         new = "".join(temp)
+
         for i in range(len(new)):
             if(new[i] != skill[i]):
                 flag = False
