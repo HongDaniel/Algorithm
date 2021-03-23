@@ -7,6 +7,4 @@ for i in range(hour+1):
         for sec in range(60):
             if '3' in str(i)+str(m)+str(sec):
                 answer += 1
-
-
 print(answer)
