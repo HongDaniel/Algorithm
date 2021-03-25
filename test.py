@@ -1,11 +1,16 @@
-import math
+punctuations = "'!()-[]{};:\,<>./?@#$%^&*_~"
 
-num = int(input())
-flag = True
-for i in range(2, num):
-    if(num % i == 0):
-        print("not a prime number")
-        flag = False
 
-if(flag):
-    print("prime number")
+def remove_puntutions(s):
+    new = ""
+    for i in range(len(s)):
+        if(s[i] in punctuations):
+            pass
+        else:
+            new += s[i]
+    return new
+
+
+string1 = "aFDF#^&$%SFSDsd^~#+_gsd2@#%"
+print(string1)
+print(remove_puntutions(string1))
