@@ -1,21 +1,21 @@
 from itertools import combinations
 from collections import Counter
+orders = ["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"]
+course = [2, 3, 4]
 
 
-temp = []
-num = 2
-orders = ["XYZ", "XWY", "WXA"]
-for order in orders:
-    for i in combinations(order, num):
-        temp.append(i)
+def solution(orders, course):
+    answer = []
+    for k in course:
+        candidates = []
+        for menu_li in orders:
+            for li in combinations(menu_li, k):
+                res = ''.join(sorted(li))
+                candidates.append(res)
+        sorted_candidates = Counter(candidates).most_common()
+        answer += [menu for menu, cnt in sorted_candidates if cnt >
+                   1 and cnt == sorted_candidates[0][1]]
+    return sorted(answer)
 
-temp = Counter(temp)
-most = temp.most_common()
-modes = []
-maximum = most[0][1]
-for num in most:
-    if num[1] == maximum:
-        modes.append(''.join(num[0]))
-print(modes)
 
-# print(Counter(temp))
+print(solution(orders, course))

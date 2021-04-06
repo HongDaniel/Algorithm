@@ -1,8 +1,5 @@
-modes = []
-        maxium = most[0][1]
-        if maxium > 1:  # 최소 2명
-            for num in most:
-                if num[1] == maxium:
-                    modes.append(''.join(num[0]))
-        for el in modes:
-            answer.append(el)
+    maximum = temp[0][1]
+            if maximum > 1:  # 1명 이상의 손님으로부터 주문된 것만
+                for el in temp:
+                    if el[1] == maximum:
+        
