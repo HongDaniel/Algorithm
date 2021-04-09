@@ -1,11 +1,11 @@
-a = ['100', '-', '200', '*', '300', '-', '500', '+', '20']
+board = [[0, 0, 0, 0]]
 
-# a.remove('200')
-# a.remove('*')
-# a.remove('300')
-# a.insert(2, 600)
-# print(a)
+rows = len(board)
+cols = len(board[0])
 
-b = list(a)
-b.remove('100')
-print(b)
+if rows < 2 or cols < 2:
+    for row in range(rows):
+        for col in range(cols):
+            if board[row][col] == 1:
+                print(1)
+    print(0)

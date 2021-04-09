@@ -1,25 +1,37 @@
-board = [[0, 1, 1, 1],
-         [1, 1, 1, 1],
-         [1, 1, 1, 1],
-         [0, 0, 1, 0]]
+board = [[1, 0], [0, 0]]
 
 
 def solution(board):
-    row = len(board)
-    col = len(board[0])
+    answer = 0
+    rows = len(board)
+    cols = len(board[0])
 
-    ms = 1
-    for r in range(row):
-        temp = []
-        print(f"r:{r+1}")
-        for c in range(col):
-            print(board[r][c])
-            if(board[r][c] == 1):
-                temp.append(c)
-        ms = max(ms, min(len(temp), (r+1)))
-        print(f"ms:{ms}")
-    print(ms)
-    return ms**2
+    if rows < 2 or cols < 2:  # 행이나 열의 길이가 1일 경우
+        for row in range(rows):
+            for col in range(cols):
+                if board[row][col] == 1:
+                    return 1
+        return 0
+
+    for row in range(1, rows):
+        for col in range(1, cols):
+            if board[row][col] == 1:
+                if board[row-1][col] == 0 or board[row][col-1] == 0 or board[row-1][col-1] == 0:
+                    pass
+                else:
+                    board[row][col] = min(
+                        board[row-1][col], board[row][col-1], board[row-1][col-1])+1
+                    if answer < board[row][col]:
+                        answer = board[row][col]
+
+    if answer == 0:  # 1첫째 행,열에 1이 존재할 경우
+        for row in range(rows):
+            for col in range(cols):
+                if board[row][col] == 1:
+                    return 1
+    answer *= answer
+    print(answer)
+    return answer
 
 
 solution(board)
