@@ -1,3 +1,7 @@
+from itertools import combinations as combi
+
 a = ['1', '2', '3']
 
-print(''.join(a))
+for i in range(4):
+    for c in combi(a, i):
+        print(c)
