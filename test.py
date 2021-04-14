@@ -1,7 +1,5 @@
-from itertools import combinations as combi
+words = ["tank", "kick", "know", "wheel",
+         "land", "dream", "mother", "robot", "tank"]
 
-a = ['1', '2', '3']
-
-for i in range(4):
-    for c in combi(a, i):
-        print(c)
+print(words[:words.index("robot")])
+return [1, 1]
