@@ -1,5 +1,4 @@
-words = ["tank", "kick", "know", "wheel",
-         "land", "dream", "mother", "robot", "tank"]
+def solution(s):
 
-print(words[:words.index("robot")])
-return [1, 1]
+    answer = -1
+    return answer
