@@ -1,4 +1,4 @@
-def solution(s):
+a = [1, 2, 3]
+b = [2, 3, 7]
 
-    answer = -1
-    return answer
+print(list(zip(a, b)))
