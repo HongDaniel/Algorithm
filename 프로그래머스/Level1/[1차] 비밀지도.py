@@ -32,8 +32,6 @@ def solution(n, arr1, arr2):
                 answer[row] += " "
 
     print(answer)
-    # print(b1)
-    # print(b2)
     return answer
 
 
