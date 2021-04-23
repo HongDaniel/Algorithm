@@ -3,8 +3,8 @@ n = int(input())
 graph = [[0]*n for i in range(n)]
 visited = [[0]*n for i in range(n)]
 answer = []
-# print(graph)
-# print(visited)
+print(graph)
+print(visited)
 
 dx = [1, -1, 0, 0]  # 동서남북
 dy = [0, 0, -1, 1]

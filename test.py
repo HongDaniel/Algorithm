@@ -1,3 +1,3 @@
-from math import pow
-a = 2
-print(int(pow(a, 2)))
+global num
+num = 0
+print(num)
