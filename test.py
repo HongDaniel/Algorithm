@@ -1,2 +1,2 @@
-a = 6
-print(str(bin(a))[2:])
+a = '123123'
+print(a.index('4'))

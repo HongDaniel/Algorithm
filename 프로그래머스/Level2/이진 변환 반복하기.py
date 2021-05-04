@@ -8,13 +8,9 @@ def solution(s):
     while(1):
         if '1' == s:
             break
-        newS = 0
-        for al in s:
-            if al == '1':
-                newS += 1
-            elif al == '0':
-                zeroCount += 1
-        s = str(bin(newS))[2:]
+        newS = s.count('1')
+        zeroCount += s.count('0')
+        s = str(bin(newS))[2:]  # 1의 길이를 2진 변환
         count += 1
     answer.append(count)
     answer.append(zeroCount)
