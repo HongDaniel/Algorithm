@@ -1,2 +1,6 @@
-a = '123123'
-print(a.index('4'))
+import heapq
+
+heap = []
+heapq.heappush(heap, 3)
+heapq.heappop(heap)
+print(heap)

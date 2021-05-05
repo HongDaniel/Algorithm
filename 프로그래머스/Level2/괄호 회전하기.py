@@ -11,16 +11,13 @@ def solution(s):
         masterStack = []  # [], (), {}
         flag = True
         print(s)
-
         for al in s:
             if len(masterStack) == 0 and (al == ')' or al == '}' or al == ']'):
                 flag = False
                 break
-
             else:
                 if al in ('(', '[', '{'):
                     masterStack.append(al)
-
                 else:
                     if al == ')':
                         if '(' == masterStack[-1]:
@@ -28,31 +25,23 @@ def solution(s):
                         else:
                             flag = False
                             break
-
                     elif al == ']':
                         if '[' == masterStack[-1]:
                             masterStack.pop()
                         else:
                             flag = False
                             break
-
                     elif al == '}':
                         if '{' == masterStack[-1]:
                             masterStack.pop()
                         else:
                             flag = False
                             break
-
-            print(f"stack:{masterStack}")
-
         if len(masterStack) != 0:
             flag = False
-
         if flag:
             answer += 1
-        print(flag)
         s = s[1:]+s[:1]
-
     print(answer)
     return answer
 
