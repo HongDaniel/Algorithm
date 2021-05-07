@@ -1,6 +1,4 @@
-import heapq
-
-heap = []
-heapq.heappush(heap, 3)
-heapq.heappop(heap)
-print(heap)
+a = 'CCBDCCB#CCB#'
+b = 'CCB'
+a = a.replace(b+'#', "")
+print(a)
