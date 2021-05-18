@@ -1,4 +1,1 @@
-a = 'CCBDCCB#CCB#'
-b = 'CCB'
-a = a.replace(b+'#', "")
-print(a)
+print(ord('z')-ord('y'))  # ord : 아스키코드로 변환
