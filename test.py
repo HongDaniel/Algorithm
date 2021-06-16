@@ -1,1 +1,3 @@
-print(ord('z')-ord('y'))  # ord : 아스키코드로 변환
+a = {'1': 1, '2': 2}
+b = a.keys()
+print(list(b))
