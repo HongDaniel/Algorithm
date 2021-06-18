@@ -4,7 +4,15 @@ import re
 dartResult = '1S*2T*3S'
 
 
-def solution(dartResult):
+def solution2(dartResult):
+    answer = 0
+    return answer
+
+
+solution2(dartResult)
+
+
+def solution1(dartResult):
     answer = []
     bonus = {'S': 1, 'D': 2, 'T': 3}
     option = {'#': -1, '*': 2, '': 1}
@@ -17,8 +25,4 @@ def solution(dartResult):
                 dart[i-1] *= 2
         dart[i] = int(dart[i][0])**bonus[dart[i][1]]*option[dart[i][2]]
     print(dart)
-
     return answer
-
-
-solution(dartResult)

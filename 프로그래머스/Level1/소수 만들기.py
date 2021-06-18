@@ -9,7 +9,20 @@ def primeCheck(a):
     return True
 
 
-def solution(nums):
+def solution2(nums):
+    answer = 0
+    candidates = list(C(nums, 3))
+    for c in candidates:
+        if primeCheck(sum(c)):
+            answer += 1
+    print(answer)
+    return answer
+
+
+solution2(nums)
+
+
+def solution1(nums):
     answer = 0
     threes = list(C(nums, 3))
     for el in threes:
@@ -17,6 +30,3 @@ def solution(nums):
             answer += 1
     print(answer)
     return answer
-
-
-solution(nums)
