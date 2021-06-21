@@ -1,5 +1,4 @@
-from collections import deque
-a = deque([1, 2, 3, 2, 5, 2, 4])
-tmp = a.remove(2)
-a.append(2)
-print(a)
+a = [1, 1, 2, 3]
+b = [2, 2, 3]
+c = set(a) & set(b)
+print(c)
