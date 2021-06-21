@@ -1,3 +1,3 @@
-dic = {'a': 1}
-dic['b'] = 2
-print(dic)
+a = '1122'
+a = list(a)
+print(a)
