@@ -1,8 +1,64 @@
-numbers = [1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5]
-hand = "right"
+numbers = [0, 0, 0]
+hand = "left"
 
 
-def solution(numbers, hand):
+def solution2(numbers, hand):
+    answer = ''
+    always_left = [1, 4, 7, -1]
+    always_right = [3, 6, 9, 10]
+    middle = [2, 5, 8, 0]
+    lhand, rhand = -1, 10  # 처음 위치
+    for n in numbers:
+
+        if n in always_left:  # 왼쪽 번호
+            lhand = n
+            add = 'L'
+
+        elif n in always_right:  # 오른쪽 번호
+            rhand = n
+            add = 'R'
+
+        else:  # 가운데 번호
+            left_diff, right_diff = 0, 0
+            if lhand in middle:  # 왼손이 가운데 있을 때
+                left_diff = abs(middle.index(n)-middle.index(lhand))
+            else:
+                left_diff = abs(middle.index(n)-middle.index(lhand+1))+1
+
+            if rhand in middle:  # 오른손이 가운데 있을 때
+                right_diff = abs(middle.index(n)-middle.index(rhand))
+
+            else:
+                if rhand == 10:
+                    right_diff = abs(middle.index(n)-middle.index(0))+1
+
+                else:
+                    right_diff = abs(middle.index(n)-middle.index(rhand-1))+1
+
+            print(f"left_diff:{right_diff},right_diff:{right_diff}")
+            if left_diff < right_diff:
+                add = 'L'
+                lhand = n
+            elif left_diff > right_diff:
+                add = 'R'
+                rhand = n
+            else:  # 거리가 같을 때
+                if hand == 'right':
+                    add = 'R'
+                    rhand = n
+                else:
+                    add = 'L'
+                    lhand = n
+        answer += add
+        print(f"n: {n} left: {lhand} right: {rhand} used: {add}")
+    print(answer)
+    return answer
+
+
+solution2(numbers, hand)
+
+
+def solution1(numbers, hand):
     answer = ''
     lefthand = -1
     righthand = 10
@@ -50,6 +106,3 @@ def solution(numbers, hand):
 
     print(answer)
     return answer
-
-
-solution(numbers, hand)
