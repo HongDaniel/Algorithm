@@ -1,28 +1,26 @@
 n = 5  # 전체학생 수
-lost = [3, 4]  # 체육복을 잃어버린 학생
-reserve = [3]  # 여벌의 체육복이 있는 학생
+lost = [1, 5]  # 체육복을 잃어버린 학생
+reserve = [1, 4, 5]  # 여벌의 체육복이 있는 학생
 
 
 def solution(n, lost, reserve):
-    # 새로운 reserve, lost 정의
-    setr = set(reserve)
-    setl = set(lost)
-    newr = list(setr-setl)
-    newl = list(setl-setr)
-
-########################################
-    found = []
-    for i in range(len(newl)):
-        if((newl[i]-1) in newr):
-            newr.remove(newl[i]-1)
-            found.append(i)
-        else:
-            if((newl[i]+1) in newr):
-                newr.remove(newl[i]+1)
-                found.append(i)
-    answer = 0
-    answer = n-(len(newl)-len(found))
+    tmp = list(lost)
+    for l in tmp:  # 최종적으로 여벌을 갖는 학생
+        if l in reserve:
+            lost.remove(l)
+            reserve.remove(l)
+    # print(f"lost: {lost} reserve: {reserve}")
+    tmp = list(lost)
+    for l in tmp:
+        if l-1 in reserve:
+            lost.remove(l)
+            reserve.remove(l-1)
+        elif l+1 in reserve:
+            lost.remove(l)
+            reserve.remove(l+1)
+    answer = n-len(lost)
+    print(answer)
     return answer
 
 
-print(solution(n, lost, reserve))
+solution(n, lost, reserve)
