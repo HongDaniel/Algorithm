@@ -1,15 +1,7 @@
-    numbers = change(numbers)
-        nextn = numbers+1
-        i = 1
-        while(1):
-            changednextn = change(nextn)
-            if len(numbers) < len(changednextn):
-                numbers = '0'+numbers
-            cnt = 0
-            for i in range(len(numbers)):
-                if numbers[i] != changednextn[i]:
-                    cnt += 1
-            if cnt < 3:
-                answer.append(nextn)
-                break
-            nextn += 1
+    ar1, ar2, ar3, ar4 = divide(arr)
+        tmp = [ar1, ar2, ar3, ar4]
+        for i in range(4):
+            if check(tmp[i]):
+                nums.append(tmp[i][0][0])
+            else:
+                recursive(tmp[i])
