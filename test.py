@@ -1,3 +1,4 @@
-tmp = {1: 1, 2: 2}
-tmp[3] = tmp.pop(1)
-print(tmp)
+import heapq
+heap = [5, 4, 2, 3, 1]
+heapq.heapify(heap)
+print(heap)
