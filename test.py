@@ -1,4 +1,4 @@
-import heapq
-heap = [5, 4, 2, 3, 1]
-heapq.heapify(heap)
-print(heap)
+a = set()
+a.add(3)
+a.update(0, 2)
+print(a)
