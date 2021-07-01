@@ -39,7 +39,7 @@ def solution(m, musicinfos):
     else:  # 일치하는 항목이 2개 이상일 경우
         candidates = sorted(candidates.items(),
                             key=lambda x: x[1], reverse=True)
-        print candidates[0][0]
+        print(candidates[0][0])
         return candidates[0][0]
 
 

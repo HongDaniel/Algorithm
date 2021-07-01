@@ -5,28 +5,22 @@ files = ["img12.png", "img10.png", "img02.png",
 
 def solution(files):
     answer = []
+    tmp = []
+    for idx, file in enumerate(files):  # head, number, tail 나누기
+        head = re.split('\d', file).pop(0).lower()
+        number = re.findall('\d+', file).pop(0)
+        tail = file[len(head)+len(number):]
+        number = int(number)
+        tmp.append((head, number, tail, idx))
 
-    new_files = [[]for i in range(len(files))]
-    for i in range(len(files)):
-        temp = str(files[i])
-        head = re.findall(r'^\D+', temp).pop()  # head분리
-        temp = temp[len(head):]
+    # 정렬
+    tmp.sort(key=lambda x: x[1])
+    tmp.sort(key=lambda x: x[0])
 
-        number = re.findall(r'^\d+', temp).pop()
-        tail = temp[len(number):]
-        new_files[i].append(head)
-        new_files[i].append(number)
-        new_files[i].append(tail)
-
-    # print(new_files)
-
-    new_files = sorted(new_files, key=lambda x: int(x[1]))  # 번호를 기준으로 정렬
-    new_files = sorted(new_files, key=lambda x: x[0].lower())  # head를 기준으로 정렬
-    for i in range(len(new_files)):
-        new_files[i] = ''.join(new_files[i])
-    print(new_files)
-
-    return new_files
+    for el in tmp:
+        answer.append(files[el[-1]])
+    print(answer)
+    return answer
 
 
 solution(files)

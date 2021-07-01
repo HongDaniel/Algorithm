@@ -1,6 +1,7 @@
 import re
 from itertools import combinations as combi
 from collections import defaultdict
+
 info = ["java backend junior pizza 150", "python frontend senior chicken 210", "python frontend senior chicken 150",
         "cpp backend senior pizza 260", "java backend junior chicken 80", "python backend senior chicken 50"]
 
@@ -25,7 +26,7 @@ def solution(info, query):
 
     for key in infodict.keys():  # 같은 key값이면 점수를 오름차순 정렬
         infodict[key].sort()
-    # print(infodict.keys())
+    print(infodict.keys())
 
     for q in query:  # query 정보 분리
         temp = []
@@ -54,7 +55,7 @@ def solution(info, query):
         answer.append(count)
 
     # print(temp)
-    print(answer)
+    # print(answer)
     return answer
 
 
