@@ -16,7 +16,7 @@ def bfs(board, m):
             cnt += 1
             while q:
                 top = q.pop(0)
-                print(top)
+                # print(top)
                 for n in board[top]:
 
                     if visited[n] == 0:
@@ -31,7 +31,6 @@ def solution():
         board[node[0]].append(node[1])
         board[node[1]].append(node[0])
     answer = bfs(board, m)
-    print(board)
     print(answer)
     return answer
 
