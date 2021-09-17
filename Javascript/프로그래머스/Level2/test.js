@@ -1,4 +1,3 @@
-let d = { a: 2, b: 3, c: 4 };
+let a = 12;
 
-d.a = 5;
-console.log(d);
+console.log(a.toString(16));
