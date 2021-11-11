@@ -1,6 +1,27 @@
-from itertools import combinations as C
-relation = [["100", "ryan", "music", "2"], ["200", "apeach", "math", "2"], ["300", "tube", "computer", "3"], [
-    "400", "con", "computer", "4"], ["500", "muzi", "music", "3"], ["600", "apeach", "music", "2"]]
+# from itertools import combinations as C
+v = [[1, 4], [3, 4], [3, 10]]
 
-ar = [n for n in range(len(relation[0]))]
-print(list(C(ar, 3)))
+
+def solution(v):
+    answer = []
+    arx = []
+    ary = []
+    for el in v:
+        arx.append(el[0])
+        ary.append(el[1])
+    print(arx)
+    print(ary)
+    setX = set(arx)
+    setY = set(ary)
+    print(setX)
+    missingx = 0
+    missingy = 0
+    for x, y in zip(setX, setY):
+        if arx.count(x) == 1:
+            missingx = x
+        if ary.count(y) == 1:
+            missingy = y
+    return [missingx, missingy]
+
+
+solution(v)

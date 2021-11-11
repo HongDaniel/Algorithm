@@ -2,38 +2,30 @@ s = "aabbaccc"
 
 
 def solution(s):
-    answer = len(s)
-    words = []
-    for length in range(1, len(s)//2+2):  # n개의 숫자로 문자열을 자른 결과
-        words.append(list(s[i:i+length] for i in range(0, len(s), length)))
-    print(words)
-
-    for pattern in words:  # n개의 문자의 패턴
-        # print(pattern)
-        pre = pattern[0]
-        cnt = 1
-        newpattern = ""
-        for i in range(1, len(pattern)):
-            if pattern[i] == pre:
+    answer = 0
+    candi = []
+    for cutlen in range(1, len(s)//2+1):
+        i = 0
+        cnt = 0
+        pattern = ''
+        news = ''
+        while (1):
+            if i >= len(s):
+                break
+            cur = s[i:i+cutlen]
+            next = s[i+cutlen:i+cutlen+cutlen]
+            if cur == next and pattern == cur:
                 cnt += 1
+                i += cutlen
+            elif cur == next and pattern != cur:
+                news += str(cnt)+pattern
+                pattern = cur
+                cnt = 2
+                i += cutlen
             else:
-                if cnt > 1:
-                    newpattern += str(cnt)+pre
-                    pre = pattern[i]
-                else:
-                    newpattern += pre
-                cnt = 1
-                pre = pattern[i]
+                news += cur
 
-            if i == len(pattern)-1:
-                if cnt == 1:
-                    newpattern += pattern[i]
-                else:
-                    newpattern += str(cnt)+pre
-        print(newpattern)
-        if len(newpattern) < answer and len(newpattern) > 0:
-            answer = len(newpattern)
-    print(answer)
+        print(news)
     return answer
 
 

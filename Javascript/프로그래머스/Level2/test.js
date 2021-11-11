@@ -1,3 +1,6 @@
-let a = 12;
-
-console.log(a.toString(16));
+let b = [
+    [1, 2],
+    [3, 4],
+];
+b.pop(0, 1);
+console.log(b);
