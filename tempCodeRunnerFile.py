@@ -1,2 +1,0 @@
-    result = str(remainder)+result
-        

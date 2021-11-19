@@ -1,26 +1,6 @@
-def changeNumber(num, n):
-    temp = num
-    result = ''
-    dic = {10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
-    flag = False
-    while(1):
-        remainder = int(temp % n)
-        print(f"remainder:{remainder}")
-        if temp < n:
-            if remainder > 9:
-                result = dic[remainder]+result
-            else:
-                result = str(int(temp))+result
-            break
-        else:
-            if remainder > 9:
-                result = dic[remainder]+result
-            else:
-                result = str(remainder)+result
-        temp /= n
+ar = [1, 2, 3]
+# ar = ar[0], ar[ar.index(3)] = ar[ar.index(3)], ar[0]
+tmp = ar.index(2)
+ar[0], ar[tmp] = ar[tmp], ar[0]
 
-    print(result)
-    return result
-
-
-changeNumber(27, 16)
+print(ar)
