@@ -1,44 +1,55 @@
-places = [["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP",
-                                                                                                         "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]]
+places = [["PPXPO", "OOOOO", "OOOOO", "OOOOO", "OOOOO"]]
 
 
-def checkOne(row, col, place):
-    if 0 < row-1 and place[row-1][col] == 'P':
+def check_person(place, row, col):
+    if (row+1) < 5 and place[row+1][col] == 'P':  # 아래검사
         return False
-    if 0 < col-1 and place[row][col-1] == 'P':
+    if (row+1) < 5 and place[row+1][col] == 'O':
+        if row+2 < 5 and place[row+2][col] == 'P':
+            return False
+        if col+1 < 5 and place[row+1][col+1] == 'P':
+            return False
+        if col-1 > 0 and place[row+1][col-1] == 'P':
+            return False
+
+    if (row-1) > 0 and place[row-1][col] == 'P':  # 위검사
         return False
-    if row+1 < 5 and place[row+1][col] == 'P':
+    if (row-1) > 0 and place[row-1][col] == 'O':
+        if row-2 > 0 and place[row-2][col] == 'P':
+            return False
+        if col+1 < 5 and place[row-1][col+1] == 'P':
+            return False
+        if col-1 > 0 and place[row-1][col-1] == 'P':
+            return False
+
+    if (col+1) < 5 and place[row][col+1] == 'P':  # 오른쪽 검사
         return False
-    if col+1 < 5 and place[row][col+1] == 'P':
+    if (col+1) < 5 and place[row][col+1] == 'O':
+        if col+2 < 5 and place[row][col+2] == 'P':
+            return False
+        if row+1 < 5 and place[row+1][col+1] == 'P':
+            return False
+        if row-1 > 0 and place[row-1][col+1] == 'P':
+            return False
+
+    if (col-1) > 0 and place[row][col-1] == 'P':  # 왼쪽 검사
         return False
+    if (col-1) > 0 and place[row][col-1] == 'O':
+        if col-2 > 0 and place[row][col-2] == 'P':
+            return False
+        if row+1 < 5 and place[row+1][col-1] == 'P':
+            return False
+        if row-1 > 0 and place[row-1][col-1] == 'P':
+            return False
+
     return True
 
 
-def checkTwo(row, col, place):
-    if row-1 > 0 and col-1 > 0 and place[row-1][col-1] == 'P':
-        if place[row-1][col] == 'O' or place[row][col-1] == 'O':
-            return False
-
-    if row-1 > 0 and col+1 < 5 and place[row-1][col+1] == 'P':
-        if place[row-1][col] == 'O' or place[row][col+1] == 'O':
-            return False
-
-    if row+1 < 5 and col-1 > 0 and place[row+1][col-1] == 'P':
-        if place[row+1][col] == 'O' or place[row][col-1] == 'O':
-            return False
-
-    if row+1 < 5 and col+1 < 5 and place[row+1][col+1] == 'P':
-        if place[row][col+1] == 'O' or place[row+1][col] == 'O':
-            return False
-    return True
-
-
-def distanced(place):
-    for row in range(len(place)):
-        for col in range(len(place[row])):
-            # print(place[row][col])
-            if place[row][col] == 'P':  # 사람이 있을 때
-                if checkOne(row, col, place) == False or checkTwo(row, col, place) == False:
+def check_place(place):
+    for row in range(5):
+        for col in range(5):
+            if place[row][col] == 'P':
+                if check_person(place, row, col) == False:
                     return False
     return True
 
@@ -46,7 +57,7 @@ def distanced(place):
 def solution(places):
     answer = []
     for place in places:
-        if distanced(place):
+        if check_place(place):
             answer.append(1)
         else:
             answer.append(0)

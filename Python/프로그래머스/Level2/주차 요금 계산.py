@@ -58,6 +58,7 @@ def solution(fees, records):
             idx += 1
         else:
             idx += 1
+
     print(answer)
     return answer
 

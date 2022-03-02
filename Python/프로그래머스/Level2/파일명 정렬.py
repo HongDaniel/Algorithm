@@ -1,6 +1,5 @@
 import re
-files = ["img12.png", "img10.png", "img02.png",
-         "img1.png", "IMG01.GIF", "img2.JPG"]
+files = ["img1.png123"]
 
 
 def solution(files):
@@ -12,6 +11,9 @@ def solution(files):
         tail = file[len(head)+len(number):]
         number = int(number)
         tmp.append((head, number, tail, idx))
+        print(file)
+        print(tail)
+        print()
 
     # 정렬
     tmp.sort(key=lambda x: x[1])
