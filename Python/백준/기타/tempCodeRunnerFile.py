@@ -1,2 +1,2 @@
-nge(n):
-#   for c in 
+
+    #     print(q.p
