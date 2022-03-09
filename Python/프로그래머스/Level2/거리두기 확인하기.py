@@ -1,68 +1,40 @@
-places = [["PPXPO", "OOOOO", "OOOOO", "OOOOO", "OOOOO"]]
-
-
-def check_person(place, row, col):
-    if (row+1) < 5 and place[row+1][col] == 'P':  # 아래검사
-        return False
-    if (row+1) < 5 and place[row+1][col] == 'O':
-        if row+2 < 5 and place[row+2][col] == 'P':
-            return False
-        if col+1 < 5 and place[row+1][col+1] == 'P':
-            return False
-        if col-1 > 0 and place[row+1][col-1] == 'P':
-            return False
-
-    if (row-1) > 0 and place[row-1][col] == 'P':  # 위검사
-        return False
-    if (row-1) > 0 and place[row-1][col] == 'O':
-        if row-2 > 0 and place[row-2][col] == 'P':
-            return False
-        if col+1 < 5 and place[row-1][col+1] == 'P':
-            return False
-        if col-1 > 0 and place[row-1][col-1] == 'P':
-            return False
-
-    if (col+1) < 5 and place[row][col+1] == 'P':  # 오른쪽 검사
-        return False
-    if (col+1) < 5 and place[row][col+1] == 'O':
-        if col+2 < 5 and place[row][col+2] == 'P':
-            return False
-        if row+1 < 5 and place[row+1][col+1] == 'P':
-            return False
-        if row-1 > 0 and place[row-1][col+1] == 'P':
-            return False
-
-    if (col-1) > 0 and place[row][col-1] == 'P':  # 왼쪽 검사
-        return False
-    if (col-1) > 0 and place[row][col-1] == 'O':
-        if col-2 > 0 and place[row][col-2] == 'P':
-            return False
-        if row+1 < 5 and place[row+1][col-1] == 'P':
-            return False
-        if row-1 > 0 and place[row-1][col-1] == 'P':
-            return False
-
-    return True
-
-
-def check_place(place):
-    for row in range(5):
-        for col in range(5):
-            if place[row][col] == 'P':
-                if check_person(place, row, col) == False:
+def check(x, y, place, visited, cnt):
+    visited[x][y] = 1
+    dx = [0, 0, 1, -1]
+    dy = [1, -1, 0, 0]
+    # print((x,y))
+    if cnt == 2:
+        return True
+    for i in range(4):
+        nx = x+dx[i]
+        ny = y+dy[i]
+        if 0 <= nx < 5 and 0 <= ny < 5 and visited[nx][ny] == 0:
+            if place[nx][ny] == 'P':
+                # print('Nope!')
+                return False
+            elif place[nx][ny] == 'O':
+                if check(nx, ny, place, visited, cnt+1) == False:
                     return False
-    return True
+            else:
+                continue
 
 
 def solution(places):
     answer = []
     for place in places:
-        if check_place(place):
+        flag = True
+        for row in range(5):
+            for col in range(5):
+                if place[row][col] == 'P':
+                    visited = [[0]*5 for i in range(5)]
+                    cnt = 0
+                    if check(row, col, place, visited, cnt) == False:
+                        flag = False
+                        break
+        if flag:
             answer.append(1)
         else:
             answer.append(0)
     print(answer)
+
     return answer
-
-
-solution(places)
