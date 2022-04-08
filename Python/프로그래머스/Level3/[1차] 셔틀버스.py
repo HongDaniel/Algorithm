@@ -38,7 +38,6 @@ def solution(n, t, m, timetable):
             print(timetable)
             if len(timetable) < m:  # 모두 다 태울 수 있을 때
                 answer = arrival_time[i]
-
             else:  # 모두 다 태울 수 없어서 반드시 타야할 때
                 if timetable[0] <= arrival_time[i]:  # 타는 사람이 있을 경우
                     last_person_time = get_time(timetable[m-1])
@@ -48,8 +47,7 @@ def solution(n, t, m, timetable):
                     else:
                         answer = str(
                             last_person_time['hour']).zfill(2)+":"+str(last_person_time['mins']-1).zfill(2)
-
-                else:
+                else:  # 탈 수 있는 사람이 없는 경우
                     answer = arrival_time[i]
 
         while 1:  # 사람을 태운다
