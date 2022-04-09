@@ -1,4 +1,6 @@
-n, m = map(int, input().split())
-board = []
+n = int(input())
+curves = []
 for i in range(n):
-    board.append(list(map(int, input().split())))
+    x, y, d, g = map(int, input().split())
+    curves.append([x, y, d, g])
+print(curves)
