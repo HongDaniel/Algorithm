@@ -1,89 +1,81 @@
+n, m = map(int, input().split())
+board = [[]for i in range(n)]
+for i in range(n):
+    board[i] = list(map(int, input().split()))
+moves = []
+for i in range(m):
+    x, y = map(int, input().split())
+    moves.append((x, y))
 dx = [0, -1, -1, -1, 0, 1, 1, 1]  # ←, ↖, ↑, ↗, →, ↘, ↓, ↙
 dy = [-1, -1, 0, 1, 1, 1, 0, -1]
-cx = [-1, -1, 1, 1]  # ↖, ↗, ↘, ↙
-cy = [-1, 1, 1, -1]
-water = []
-direction = []
+clouds = [[n-1, 0], [n-1, 1], [n-2, 0], [n-2, 1]]
 
 
-def getinfo():
-    for i in range(n):  # 물바구니 정보 저장
-        ar = list(map(int, input().split()))
-        water.append(ar)
-    for j in range(m):
-        a, b = map(int, input().split())
-        direction.append([a, b])
+def step1(clouds, move):
+    di, si = move
+    movex, movey = dx[di-1], dy[di-1]
+    nclouds = []
+    for cloud in clouds:
+        x, y = cloud
+        for i in range(si):
+            x += movex
+            y += movey
+            if x < 0:
+                x = n-1
+            if x > n-1:
+                x = 0
+            if y < 0:
+                y = n-1
+            if y > n-1:
+                y = 0
+        nclouds.append([x, y])
+    return nclouds
 
 
-# 정보 입력
-n, m = map(int, input().split())
-getinfo()
+def step2(board, clouds):  # 각 칸에 비가 내린다
+    for cloud in clouds:
+        x, y = cloud
+        board[x][y] += 1
+    return board
 
 
-def moveCloud(i, s, cloud):
-    newCloud = []
-    for dot in cloud:  # [[n-1, 0], [n-1, 1], [n-2, 0], [n-2, 1]]
-        x, y = dot[0], dot[1]
-        # print(f"x, y:{x}, {y}")
-        # print(f"dx:{dx[i]} dy:{dy[i]}")
-        # if 0 <= x+dx[i]*s < n:
-        #     x = x+dx[i]*s
-        # elif x+dx[i]*s < 0:
-        #     x = n-1
-        # else:
-        #     x = 0
-        # if 0 <= y+dy[i]*s < n:
-        #     y = y+dy[i]*s
-        # elif y+dy[i]*s < 0:
-        #     y = n-1
-        # else:
-        #     y = 0
-        nx = (n+x+dx[i]*s) % n
-        ny = (n+y+dy[i]*s) % n
-        newCloud.append([nx, ny])
-    return newCloud
-
-
-def rain(cloud):
-    for dot in cloud:
-        x, y = dot[0], dot[1]
-        water[x][y] += 1
-
-
-def watercopy(cloud):
-    for dot in cloud:
-        x, y = dot[0], dot[1]
+def step3(board, rained):  # 대각선 체크
+    diagnal = [1, 3, 5, 7]
+    for r in rained:
+        x, y = r
         cnt = 0
-        for i in range(4):
-            if 0 <= x+cx[i] < n and 0 <= y+cy[i] < n:
-                if water[x+cx[i]][y+cy[i]] > 0:
-                    cnt += 1
-        water[x][y] += cnt
+        for i in diagnal:
+            movex, movey = dx[i], dy[i]
+            nx = x+movex
+            ny = y+movey
+            if 0 <= nx < n and 0 <= ny < n and board[nx][ny] > 0:
+                cnt += 1
+        board[x][y] += cnt
+    return board
 
 
-def newCloud(cloud):
-    tmp = []
+def step4(board, visited):
+    nclouds = []
     for row in range(n):
         for col in range(n):
-            if water[row][col] >= 2 and [row, col] not in cloud:
-                tmp.append([row, col])
-    # tmp.sort()  # 보기 좋게 정렬
-    # print(f"tmp:{tmp}")
-    for (row, col) in tmp:  # 구름이 생기면 물이 2감소
-        water[row][col] -= 2
-    return tmp
+            if board[row][col] >= 2 and visited[row][col] == 0:
+                board[row][col] -= 2
+                nclouds.append([row, col])
+    return board, nclouds
 
 
-cloud = [[n-1, 0], [n-1, 1], [n-2, 0], [n-2, 1]]  # 첫번째 구름
-
-for d in direction:
-    movedcloud = moveCloud(d[0]-1, d[1], cloud)  # i번째 방향으로 s만큼 움직임
-    rain(movedcloud)  # 비가 내림
-    watercopy(movedcloud)  # 물복사시전
-    cloud = newCloud(movedcloud)  # 새로운 구름생성
-    # print(f"new cloud:{cloud}")
-    # print(f"water:{water}")
+for move in moves:
+    clouds = step1(clouds, move)  # 구름을 이동시킨다.
+    board = step2(board, clouds)  # 비가 내린다.
+    rained = list(clouds)
+    board = step3(board, rained)
+    visited = [[0]*n for i in range(n)]
+    for x, y in rained:
+        visited[x][y] = 1
+    board, clouds = step4(board, visited)
+    # print(board)
+    # print()
 answer = 0
-for row in water:
+for row in board:
     answer += sum(row)
 print(answer)
